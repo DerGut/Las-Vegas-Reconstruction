@@ -259,7 +259,7 @@ add_definitions(${LVR_DEFINITIONS})
 ##############################################################
 # LVR-Kinfu Checks
 ##############################################################
-option(WITH_KINFU "Compile LVR Kinfu" OFF)
+option(WITH_KINFU "Compile LVR Kinfu" ON)
 
 # Check and set CUDA host compiler flags. CUDA 6.5 is only 
 # compatible to gcc4.8. Older CUDA versions require GCC lower 

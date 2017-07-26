@@ -78,6 +78,23 @@ set_target_properties(lvr_kinfu PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
+## Fix for kinfu-ros
+## Some dependencies were missing in liblvr_kinfu (Options.cpp, 
+## LVR_KinFu.cpp). 
+## This is a workaround to make the project compile. Later on, they
+## should not be needed for the rosnode to function. 
+cuda_add_library(kinfu ${KFUSION_SRC} ${KFUSION_CUDA_SRC} ${LVR_KINFU_SRC})
+target_link_libraries(kinfu
+	kfusion
+	lvr_static
+	${OpenCV_LIBS}
+	${Boost_SYSTEM_LIBRARY} 
+	${Boost_PROGRAM_OPTIONS_LIBRARY}
+	${Boost_FILESYSTEM_LIBRARY}
+	${OPENGL_LIBRARY} 
+	${GLUT_LIBRARIES}
+)
+
 install(TARGETS lvr_kinfu RUNTIME DESTINATION bin COMPONENT main)
 install(FILES ${srcs} DESTINATION app COMPONENT main)
 endif()
