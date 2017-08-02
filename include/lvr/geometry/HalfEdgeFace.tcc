@@ -120,8 +120,8 @@ void HalfEdgeFace<VertexT, NormalT>::getVertexNormals(vector<NormalT> &n)
     EdgePtr current_edge = m_edge;
     while(current_edge->end() != start)
     {
-        n.push_back(current_edge->end()->normal);
-        current_edge = current_edge->next;
+        n.push_back(current_edge->end()->m_normal);
+        current_edge = current_edge->next();
     }
 
 }
